@@ -120,6 +120,26 @@ class Network(object):
         return (output_activations - y)
         pass
 
+    def save_model(self):
+        '''
+        Saves the size, weights, and biases of the current model.
+        '''
+        np.savetxt('model/weights.csv', self.weights, delimiter=',')
+        np.savetxt('model/biases.csv', self.biases, delimiter=',')
+        np.savetxt('model/layout.csv', self.sizes, delimiter=',')
+        pass
+
+    def load_model(self):
+        '''
+        Loads the currently saved model.
+        NOTE: Do not call if no model saved.
+        '''
+        self.weights = np.loadtxt('model/weights.csv', delimiter=',')
+        self.biases = np.loadtxt('model/biases.csv', delimiter=',')
+        self.sizes = np.loadtxt('model/layout.csv', delimiter=',')
+        pass
+                
+
 
 # utility functions
 def sigmoid(z):
